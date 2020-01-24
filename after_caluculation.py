@@ -1,7 +1,7 @@
 #!/home/prilog/.pyenv/versions/3.6.9/bin/python
 # -*- coding: utf-8 -*-
-import characters as cd
-import debuff as db
+from . import characters as cd
+from . import debuff as db
 import numpy as np
 
 # UB情報格納位置

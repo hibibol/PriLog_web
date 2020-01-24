@@ -1,7 +1,7 @@
 #!/home/prilog/.pyenv/versions/3.6.9/bin/python
 # -*- coding: utf-8 -*-
 import math
-import characters as cd
+from . import characters as cd
 
 # UBデバフテーブル　18秒~1秒
 ub_table = [
