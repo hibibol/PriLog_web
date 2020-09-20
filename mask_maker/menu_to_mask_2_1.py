@@ -2,13 +2,13 @@ import cv2
 import numpy as np
 from PIL import Image
 import os, glob
-import characters as cd
 
 # 画像が保存されているルートディレクトリのパス
-root_dir = "./learning_data"
-# キャラクター名一覧
-characters = cd.characters_name_mask
-
+root_dir = "../menu"
+# 時間名
+timers = [
+    "menu",
+]
 
 # 画像データ用配列
 X = []
@@ -30,24 +30,26 @@ def make_sample(files):
 # 画像データに対応するcategoriesのidxをY格納する関数
 def add_sample(cat, fname):
     img = Image.open(fname)
+#    img = img.resize((10, 14))
     data = np.asarray(img)
     data_gray = cv2.cvtColor(data, cv2.COLOR_RGB2GRAY)
-    ret, result = cv2.threshold(data_gray, 200, 255, cv2.THRESH_BINARY)
+    ret, result = cv2.threshold(data_gray, 180, 255, cv2.THRESH_BINARY)
     invResult = cv2.bitwise_not(result)
-    cv2.imwrite('save_data/ ' + str(cat) + '.png', invResult)
+    cv2.imwrite('../menu/ ' + str(cat) + '.png', invResult)
     X.append(invResult)
     Y.append(cat)
+
 
 # 全データ格納用配列
 allfiles = []
 
 # カテゴリ配列の各値と、それに対応するidxを認識し、全データをallfilesにまとめる
-for idx, cat in enumerate(characters):
+for idx, cat in enumerate(timers):
     image_dir = root_dir + "/" + cat
     files = glob.glob(image_dir + "/*.png")
     for f in files:
         allfiles.append((idx, f))
 
 X_train, y_train = make_sample(allfiles)
-# データを保存する（データの名前を「UB_name.npy」としている）
-np.save("model/UB_name.npy", X_train)
+# データを保存する（データの名前を「menu.npy」としている）
+np.save("../model/2_1/menu_2_1.npy", X_train[0])

@@ -7,6 +7,7 @@ import tkinter
 import tkinter.filedialog
 import tkinter.messagebox
 from collections import deque
+import mask_maker.make_model
 
 
 NO_ERROR = 0
