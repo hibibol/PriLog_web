@@ -544,7 +544,7 @@ def rest_analyze():
             else:  # 解析が完了したら、そのキャッシュJSONを返す
                 cache = cm.queue_cache_check(youtube_id)
                 if cache is not False:
-                    title, time_line, time_line_enemy, time_data, total_damage, debuff_value, past_status = cache
+                    title, time_line, time_line_enemy, time_data, total_damage, debuff_value, damages, past_status = cache
                     rest_result = get_rest_result(title, time_line, time_line_enemy, time_data, total_damage, damages, debuff_value)
 
                     status = past_status

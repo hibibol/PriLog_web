@@ -431,7 +431,7 @@ def analyze_movie(movie_path):
             if ret is False:
                 break
 
-            if i % cap_interval is 0:
+            if i % cap_interval == 0:
                 if time_count >= 0:
                     ret, original_frame = video.read()
 
@@ -458,7 +458,7 @@ def analyze_movie(movie_path):
                             analyze_anna_icon_frame(work_frame, CHARACTER_ICON_ROI, characters_find)
 
                     else:
-                        if time_min is "1":
+                        if time_min == "1":
                             time_min = analyze_timer_frame(work_frame, min_roi, 2, time_min)
 
                         time_sec10 = analyze_timer_frame(work_frame, tensec_roi, 6, time_sec10)
