@@ -145,7 +145,7 @@ def index():
 
         cache = cm.cache_check(youtube_id)
 
-        if cache is not False:
+        if cache:
             title, time_line, time_line_enemy, time_data, total_damage, debuff_value, past_status = cache
             if past_status % 100 // 10 == 0:
                 debuff_dict, data_txt, data_url, total_damage = get_web_txt(youtube_id, title,
@@ -211,14 +211,15 @@ def index():
             youtube_id = request.args.get("v")
             if re.fullmatch(r"^([a-zA-Z0-9_-]{11})$", youtube_id):
                 cache = cm.cache_check(youtube_id)
-                if cache is not False:
+                if cache:
                     title, time_line, time_line_enemy, time_data, total_damage, debuff_value, past_status = cache
                     if past_status % 100 // 10 == 0:
                         debuff_dict, data_txt, data_url, total_damage = get_web_txt(youtube_id, title,
                                                                                     time_line, debuff_value,
                                                                                     total_damage)
 
-                        return render_template("result.html", title=title, timeLine=time_line, timeLineEnemy=time_line_enemy,
+                        return render_template("result.html", title=title, timeLine=time_line,
+                                               timeLineEnemy=time_line_enemy,
                                                timeData=time_data, totalDamage=total_damage, debuffDict=debuff_dict,
                                                data_txt=data_txt, data_url=data_url)
 
@@ -277,7 +278,7 @@ def index():
             else:  # prilog.jp/(YoutubeID)に該当しないリクエスト
                 error = "不正なリクエストです"
                 return render_template("index.html", error=error)
-            
+
         else:
             path = session.get("path")
             session.pop("path", None)
@@ -479,7 +480,7 @@ def rest_analyze():
         # 正常なurlの場合
         cache = cm.cache_check(youtube_id)
 
-        if cache is not False:
+        if cache:
             # キャッシュ有りの場合
             # キャッシュを返信
             title, time_line, time_line_enemy, time_data, total_damage, debuff_value, damages, past_status = cache
