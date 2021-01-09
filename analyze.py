@@ -493,15 +493,6 @@ def analyze_movie(movie_path):
                     find_time = time_min + ":" + time_sec10 + time_sec1
                     now_time, is_same_time = time_check(time_min, time_sec10, time_sec1, past_time)
 
-# <<<<<<< HEAD
-
-#                         ret = analyze_damage_frame(original_frame, damage_data_roi, tmp_damage)
-
-#                         # ret = analyze_damage_frame(original_frame, damage_data_roi, tmp_damage)
-#                         ub_result, find_id = analyze_ub_frame(work_frame, ub_roi, time_min, time_sec10, time_sec1,
-#                                                               ub_data, ub_data_enemy, ub_data_value, damage_list, characters_find, tmp_damage)
-#                         tmp_damage = []
-# =======
                     is_normal_speed = analyze_speed(original_frame, speed_roi)
 
                     if is_same_time:
@@ -526,6 +517,10 @@ def analyze_movie(movie_path):
                         if ub_result:
                             # update count
                             time_count = update_count(frame_rate, find_id, cap_interval)
+                            ret = analyze_damage_frame(original_frame, damage_data_roi, tmp_damage)
+                            if ret:
+                                damage_list.append("".join(tmp_damage))
+                            tmp_damage = []
 
                         elif is_normal_speed:
                             # check enemy ub
@@ -696,12 +691,7 @@ def analyze_ub_frame(frame, roi, time_min, time_10sec, time_sec, ub_data, ub_dat
 
     if ub_result is FOUND:
         tl = time_min + ":" + time_10sec + time_sec + " " + tmp_character[0]
-        ub_data.append(tl)
-        ub_data_enemy.append(tl)
-        if len(tmp_damage)>0:
-            damage_list.append("".join(tmp_damage))
-        else:
-            damage_list.append("None")
+
         ub_data_value.extend([[int(int(time_min) * 60 + int(time_10sec) * 10 + int(time_sec)), tmp_character[1]]])
         if ub_result is FOUND:
             tl = time_min + ":" + time_10sec + time_sec + " " + tmp_character[0]
