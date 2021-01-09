@@ -146,7 +146,7 @@ def index():
         cache = cm.cache_check(youtube_id)
 
         if cache:
-            title, time_line, time_line_enemy, time_data, total_damage, debuff_value, past_status = cache
+            title, time_line, time_line_enemy, time_data, total_damage, debuff_value, damage_list, past_status = cache
             if past_status % 100 // 10 == 0:
                 debuff_dict, data_txt, data_url, total_damage = get_web_txt(youtube_id, title,
                                                                             time_line, debuff_value, total_damage)
@@ -212,7 +212,7 @@ def index():
             if re.fullmatch(r"^([a-zA-Z0-9_-]{11})$", youtube_id):
                 cache = cm.cache_check(youtube_id)
                 if cache:
-                    title, time_line, time_line_enemy, time_data, total_damage, debuff_value, past_status = cache
+                    title, time_line, time_line_enemy, time_data, total_damage, debuff_value, damages, past_status = cache
                     if past_status % 100 // 10 == 0:
                         debuff_dict, data_txt, data_url, total_damage = get_web_txt(youtube_id, title,
                                                                                     time_line, debuff_value,

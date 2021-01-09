@@ -510,7 +510,7 @@ def analyze_movie(movie_path):
                         ub_result, find_id, find_count = analyze_ub_frame(work_frame, ub_roi, time_min, time_sec10,
                                                                           time_sec1,
                                                                           ub_data, ub_data_enemy, ub_data_value,
-                                                                          characters_find, find_id, find_count)
+                                                                          damage_list, characters_find, tmp_damage, find_id, find_count)
 
                         # check score existence
                         ret = analyze_score_frame(work_frame, SCORE_DATA, score_roi)
